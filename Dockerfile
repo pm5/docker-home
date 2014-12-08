@@ -9,7 +9,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 RUN mkdir /var/run/sshd   # privilege separation directory required by sshd
 
-RUN useradd --home-dir /app -m app
+RUN groupadd -g 1000 app && \
+    useradd -u 1000 -g app --home-dir /app -m app
 
 VOLUME ["/root", "/app"]
 
