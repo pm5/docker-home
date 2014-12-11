@@ -1,14 +1,10 @@
 #!/bin/bash
 
-if [ ! -f /app/password.txt ]; then
-  pwgen 16 1 > /root/password.txt
-  chmod 600 /root/password.txt
-
-  pwgen 16 1 > /app/password.txt
-  chown app:app /app/password.txt
-  chmod 600 /app/password.txt
+if [ ! -f ${PASSWORD_FILE} ]; then
+  pwgen 16 1 > ${PASSWORD_FILE}
+  chown ${DEVELOPER_USER}:${DEVELOPER_GROUP} ${PASSWORD_FILE}
+  chmod 600 ${PASSWORD_FILE}
 fi
 
-echo root:$(cat /root/password.txt) | chpasswd
-echo app:$(cat /app/password.txt) | chpasswd
-usermod -aG sudo app
+echo ${DEVELOPER_USER}:$(cat ${PASSWORD_FILE}) | chpasswd
+usermod -aG sudo ${DEVELOPER_USER}

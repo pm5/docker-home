@@ -1,4 +1,4 @@
 
-A Docker image for SSH.
+A Docker image for home directory.
 
-Some settings are suggested by the official [Dockerizing an SSH Daemon Service](https://docs.docker.com/examples/running_ssh_service/) example.
+This is intended to provide home directory for Linux development boxes through Docker volumes.
